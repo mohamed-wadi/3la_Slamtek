@@ -149,6 +149,9 @@
     </script>
 
     {!! view_render_event('bagisto.admin.layout.vue-app-mount.after') !!}
+
+    <!-- Script de personnalisation du formulaire produit -->
+    <script src="{{ asset('product-form-customizer.js') }}"></script>
 </body>
 
 </html>

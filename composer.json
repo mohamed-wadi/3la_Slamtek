@@ -122,6 +122,9 @@
                 "intervention/image",
                 "laravel/socialite",
                 "shetabit/visitor"
+            ],
+            "providers": [
+                "App\\Providers\\CustomScriptsServiceProvider"
             ]
         }
     },

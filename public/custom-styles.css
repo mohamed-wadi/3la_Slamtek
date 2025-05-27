@@ -1,0 +1,30 @@
+/**
+ * Styles personnalisés pour masquer l'option "Downloadable Products" du menu client
+ */
+
+/* Sélecteur très spécifique pour cibler uniquement l'option Downloadable Products */
+.panel-side a[href*="downloadable-products"] {
+    display: none !important;
+}
+
+/* Masquer également le conteneur parent si nécessaire */
+.panel-side a[href*="downloadable-products"] ~ div,
+.panel-side a[href*="downloadable-products"] + div,
+.panel-side a[href*="downloadable-products"]::parent {
+    display: none !important;
+}
+
+/* Cibler par le texte du lien et l'icône */
+.panel-side .icon-download {
+    display: none !important;
+}
+
+/* Cibler spécifiquement le conteneur de l'élément */
+.panel-side div:has(a[href*="downloadable-products"]) {
+    display: none !important;
+}
+
+/* Masquer toute la section qui contient le lien */
+.panel-side div.flex.justify-between:has(a[href*="downloadable-products"]) {
+    display: none !important;
+}
