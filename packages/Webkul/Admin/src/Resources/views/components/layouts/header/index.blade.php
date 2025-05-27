@@ -14,7 +14,7 @@
         <!-- Logo -->
         <a href="{{ route('admin.dashboard.index') }}">
             <img
-                class="h-10"
+                class="max-h-[60px] w-auto object-contain max-sm:max-h-[50px]"
                 src="/storage/admin-logo.png"
                 id="logo-image"
                 alt="{{ config('app.name') }}"

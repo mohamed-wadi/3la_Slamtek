@@ -8,7 +8,7 @@
         <div class="flex flex-col items-center gap-5">
             <!-- Logo masqué -->
             <img
-                class="h-10 w-[110px]"
+                class="max-h-[60px] w-auto object-contain max-sm:max-h-[50px]"
                 src="/storage/logo/logo.png"
                 alt="{{ config('app.name') }}"
             />
