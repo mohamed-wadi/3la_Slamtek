@@ -76,7 +76,52 @@
 
     <style>
         {!! core()->getConfigData('general.content.custom_scripts.custom_css') !!}
+        
+        /* Masquer spécifiquement l'élément Bookings du menu Sales */
+        .sidebar-sales a[href*="booking"],
+        a[href*="admin/sales/bookings"],
+        a[href*="/bookings"] {
+            display: none !important;
+        }
+        
+        /* Masquer les éléments Attribute et Attribute Family du menu Catalog */
+        a[href*="/attributes"],
+        a[href*="/attribute-families"],
+        a[href*="/catalog/attributes"],
+        a[href*="/catalog/families"],
+        .menu-item a[href*="attributes"],
+        .menu-item a[href*="families"] {
+            display: none !important;
+        }
+        
+        /* Masquer les éléments Groups et GDPR Data Request du menu Customers */
+        a[href*="/groups"],
+        a[href*="/gdpr"],
+        a[href*="/customers/groups"],
+        a[href*="/customers/gdpr"],
+        .menu-item a[href*="groups"],
+        .menu-item a[href*="gdpr"] {
+            display: none !important;
+        }
+        
+        /* Masquer le menu Marketing complet */
+        a[href*="/marketing"],
+        a[href*="/admin/marketing"],
+        .icon-marketing,
+        [class*="marketing"],
+        a[href*="/promotions"],
+        a[href*="/communications"],
+        a[href*="/campaigns"],
+        a[href*="/email-templates"],
+        a[href*="/events"],
+        a[href*="/newsletters"],
+        a[href*="/sitemaps"] {
+            display: none !important;
+        }
     </style>
+
+    <!-- CSS personnalisé pour masquer des éléments de l'interface admin -->
+    <link rel="stylesheet" href="{{ asset('admin-customizations.css') }}">
 
     {!! view_render_event('bagisto.admin.layout.head.after') !!}
 </head>
@@ -133,6 +178,18 @@
     {!! view_render_event('bagisto.admin.layout.body.after') !!}
 
     @stack('scripts')
+
+    <!-- Script pour masquer l'élément Bookings du menu Sales -->
+    <script src="{{ asset('hide-bookings.js') }}"></script>
+    
+    <!-- Script pour masquer les éléments Attribute et Attribute Family du menu Catalog -->
+    <script src="{{ asset('hide-catalog-items.js') }}"></script>
+    
+    <!-- Script pour masquer les éléments Groups et GDPR Data Request du menu Customers -->
+    <script src="{{ asset('hide-customer-items.js') }}"></script>
+    
+    <!-- Script pour masquer le menu Marketing complet -->
+    <script src="{{ asset('hide-marketing-menu.js') }}"></script>
 
     {!! view_render_event('bagisto.admin.layout.vue-app-mount.before') !!}
 

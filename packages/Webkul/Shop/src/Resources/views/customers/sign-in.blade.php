@@ -26,7 +26,7 @@
                 aria-label="@lang('shop::app.customers.login-form.bagisto')"
             >
                 <img
-                    src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                    src="/storage/logo/logo.png"
                     alt="{{ config('app.name') }}"
                     width="131"
                     height="29"
@@ -137,11 +137,32 @@
                         </div>
                     @endif
 
+                    <!-- Option pour se connecter en tant qu'administrateur -->
+                    <div class="mt-6 flex items-center justify-between max-sm:flex-wrap">
+                        <div class="flex items-center gap-x-1.5">
+                            <input 
+                                class="form-checkbox rounded-sm text-navyBlue h-5 w-5 cursor-pointer"
+                                type="checkbox"
+                                id="admin-login"
+                                name="admin-login"
+                                onclick="redirectToAdminLogin()"
+                            >
+
+                            <label 
+                                class="text-base cursor-pointer"
+                                for="admin-login"
+                            >
+                                Se connecter en tant qu'administrateur
+                            </label>
+                        </div>
+                    </div>
+
                     <!-- Submit Button -->
                     <div class="mt-8 flex flex-wrap items-center gap-9 max-sm:justify-center max-sm:gap-5 max-sm:text-center">
                         <button
                             class="primary-button m-0 mx-auto block w-full max-w-[374px] rounded-2xl px-11 py-4 text-center text-base max-md:max-w-full max-md:rounded-lg max-md:py-3 max-sm:py-1.5 ltr:ml-0 rtl:mr-0"
                             type="submit"
+                            id="submit-button"
                         >
                             @lang('shop::app.customers.login-form.button-title')
                         </button>
@@ -172,6 +193,27 @@
 
     @push('scripts')
         {!! \Webkul\Customer\Facades\Captcha::renderJS() !!}
+        
+        <script type="text/javascript">
+            /**
+             * Fonction pour rediriger vers la page de connexion admin si la case est cochée
+             */
+            function redirectToAdminLogin() {
+                var adminLoginCheckbox = document.getElementById('admin-login');
+                var submitButton = document.getElementById('submit-button');
+                
+                if (adminLoginCheckbox.checked) {
+                    // Modifier le comportement du bouton de soumission
+                    submitButton.onclick = function(e) {
+                        e.preventDefault();
+                        window.location.href = '{{ url("/admin/login") }}';
+                    };
+                } else {
+                    // Restaurer le comportement normal du formulaire
+                    submitButton.onclick = null;
+                }
+            }
+        </script>
 
         <script>
             function switchVisibility() {

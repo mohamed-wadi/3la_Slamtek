@@ -1,0 +1,41 @@
+/**
+ * Personnalisations CSS pour l'interface d'administration de Bagisto
+ * Masquer l'élément "Booking" du menu Sales dans le dashboard admin
+ */
+
+/* Ciblage direct des liens et éléments contenant "booking" */
+.menu-item a[href*="bookings"],
+.menu-item a[href*="booking"],
+li a[href*="booking"],
+.navigation a[href*="booking"],
+.sidebar a[href*="booking"],
+.side-nav a[href*="booking"],
+
+/* Ciblage de l'icône de calendrier */
+.icon-calendar,
+
+/* Ciblage par attributs spécifiques */
+.menu-item[data-name="booking"],
+.menu-item[title*="Booking"],
+[aria-label*="booking" i],
+[title*="booking" i],
+
+/* Ciblage spécifique dans le menu Sales */
+.admin-sidebar a[href*="booking"],
+.menu-sales a[href*="booking"],
+.sidebar-item a[href*="booking"],
+.menu a[href*="booking"],
+.navbar a[href*="booking"],
+
+/* Cibler les liens spécifiques au booking avec les classes qu'ils pourraient avoir */
+a.bookings-link,
+a.booking-link,
+a[class*="booking"],
+
+/* Spécifiquement dans le menu sales */
+.sales-content a[href*="booking"],
+.sidebar-sales a[href*="booking"],
+div.sales a[href*="booking"],
+.sidebar div[class*="sales"] a[href*="booking"] {
+    display: none !important;
+}
