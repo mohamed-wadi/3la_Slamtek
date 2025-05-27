@@ -209,6 +209,9 @@
 
     <!-- Script de personnalisation du formulaire produit -->
     <script src="{{ asset('product-form-customizer.js') }}"></script>
+    
+    <!-- Script to hide Magic AI and Google Captcha from configure menu -->
+    <script src="{{ asset('hide-configure-items.js') }}"></script>
 </body>
 
 </html>
