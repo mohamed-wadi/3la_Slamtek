@@ -15,7 +15,8 @@
         >
             <img
                 src="/storage/logo/logo.png"
-                class="max-h-[60px] w-auto object-contain max-sm:max-h-[50px]"
+                width="131"
+                height="29"
                 alt="{{ config('app.name') }}"
             >
         </a>
