@@ -1,49 +1,69 @@
+/**
+ * Script pour masquer le menu Configuration complet dans l'administration
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    // Fonction pour masquer les éléments de configuration indésirables
-    function hideUnwantedConfigurationItems() {
-        // Sélecteur pour le menu latéral de configuration
-        const configMenu = document.querySelector('div[data-menu-key="configuration"]');
+    function hideConfigurationMenu() {
+        // Masquer l'élément du menu principal Configuration
+        const configMenuItems = document.querySelectorAll('a, p, div, span');
         
-        if (configMenu) {
-            // Masquer Magic AI
-            const magicAiItem = configMenu.querySelector('a[href*="magic-ai"]');
-            if (magicAiItem) {
-                magicAiItem.closest('li')?.remove();
-            }
-            
-            // Masquer Google Captcha
-            const captchaItem = configMenu.querySelector('a[href*="captcha"]');
-            if (captchaItem) {
-                captchaItem.closest('li')?.remove();
-            }
-            
-            // Masquer les éléments dans la page de configuration
-            const configContent = document.querySelector('.configuration-page');
-            if (configContent) {
-                // Masquer la section Magic AI
-                const magicAiSection = configContent.querySelector('div[data-menu-key*="magic_ai"]');
-                if (magicAiSection) {
-                    magicAiSection.style.display = 'none';
-                }
+        configMenuItems.forEach(function(element) {
+            // Rechercher par texte
+            if (element.textContent && element.textContent.trim() === 'Configure') {
+                // Trouver l'élément parent du menu
+                const menuItem = element.closest('.px-4') || element.closest('.menu-item') || element.closest('div');
                 
-                // Masquer la section Captcha
-                const captchaSection = configContent.querySelector('div[data-menu-key*="captcha"]');
-                if (captchaSection) {
-                    captchaSection.style.display = 'none';
+                if (menuItem) {
+                    // Masquer l'élément du menu complet
+                    menuItem.style.display = 'none';
                 }
             }
-        }
+            
+            // Rechercher par attributs
+            if (element.getAttribute && 
+                (element.getAttribute('href') && element.getAttribute('href').includes('/configuration') ||
+                 element.getAttribute('class') && element.getAttribute('class').includes('configuration') ||
+                 element.getAttribute('data-menu-key') && element.getAttribute('data-menu-key').includes('configuration'))) {
+                
+                // Trouver l'élément parent du menu
+                const menuItem = element.closest('.px-4') || element.closest('.menu-item') || element.closest('div');
+                
+                if (menuItem) {
+                    // Masquer l'élément du menu complet
+                    menuItem.style.display = 'none';
+                }
+            }
+        });
+        
+        // Masquer également tous les liens qui pourraient être des sous-menus de Configuration
+        const configSubmenus = document.querySelectorAll('a');
+        
+        configSubmenus.forEach(function(link) {
+            if (link.href && link.href.includes('/configuration')) {
+                // Trouver l'élément parent du menu
+                const menuItem = link.closest('li') || link.closest('.menu-item') || link.closest('div');
+                
+                if (menuItem) {
+                    // Masquer l'élément du menu complet
+                    menuItem.style.display = 'none';
+                }
+            }
+        });
     }
     
-    // Exécuter la fonction immédiatement
-    hideUnwantedConfigurationItems();
+    // Exécuter immédiatement
+    hideConfigurationMenu();
     
-    // Utiliser un MutationObserver pour gérer le chargement dynamique du contenu
+    // Exécuter à nouveau après des délais pour s'assurer que le DOM est complètement chargé
+    setTimeout(hideConfigurationMenu, 500);
+    setTimeout(hideConfigurationMenu, 1000);
+    setTimeout(hideConfigurationMenu, 2000);
+    
+    // Utiliser un MutationObserver pour détecter les changements dynamiques
     const observer = new MutationObserver(function(mutations) {
-        hideUnwantedConfigurationItems();
+        hideConfigurationMenu();
     });
     
-    // Commencer à observer le corps du document pour les changements
+    // Démarrer l'observation
     observer.observe(document.body, {
         childList: true,
         subtree: true
