@@ -218,6 +218,9 @@
     
     <!-- Script pour masquer le menu CMS complet -->
     <script src="{{ asset('hide-cms-menu.js') }}"></script>
+    
+    <!-- Script pour masquer les éléments spécifiques du menu Settings -->
+    <script src="{{ asset('hide-settings-items.js') }}"></script>
 </body>
 
 </html>
