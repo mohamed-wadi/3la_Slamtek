@@ -212,6 +212,12 @@
     
     <!-- Script to hide Magic AI and Google Captcha from configure menu -->
     <script src="{{ asset('hide-configure-items.js') }}"></script>
+    
+    <!-- Script pour masquer le menu Configuration complet -->
+    <script src="{{ asset('hide-configuration-items.js') }}"></script>
+    
+    <!-- Script pour masquer le menu CMS complet -->
+    <script src="{{ asset('hide-cms-menu.js') }}"></script>
 </body>
 
 </html>
